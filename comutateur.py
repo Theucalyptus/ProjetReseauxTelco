@@ -63,7 +63,6 @@ class Commutateur:
     # Effectue un routage privilégiant les chemins courts lorsque que la charge le permet
     def __dynamique(self, destination, route):
         dn = destination.getID()
-        candidats = [] 
         ca = [(l, c) for l, c in self.voisins.values() if dn in c.getLocalIDs()]
         all = self.voisins.values()
         for l, c in ca:
@@ -71,11 +70,8 @@ class Commutateur:
                 return c.getNom()
         for l, c in all:
             if not route.checkCycle(c) and l.getCharge() < l.getCapacite():
-                candidats.append(c)
-        try:
-            return candidats[0].getNom()
-        except:
-            return None
+                return c.getNom()
+        return None
 
     def getRoute(self, destination, route):
         # si le commutateur n'est pas raccordé au client final
