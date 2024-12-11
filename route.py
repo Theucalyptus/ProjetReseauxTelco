@@ -18,3 +18,10 @@ class Route:
         for l in self.liens:
             cycle = cycle or l.dessert(noeud)
         return cycle
+    
+    def afficher(self):
+        str = ""
+        for l in self.liens:
+            str += l.toString() + " -> "
+        str += "FIN"
+        print(str)
