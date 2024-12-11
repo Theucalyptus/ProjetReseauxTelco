@@ -28,7 +28,7 @@ class Lien:
         self.charge-=1
         
     def dessert(self, id):
-        return (id == self.coma.getNom() or id == self.comb.getNom())
+        return (id.getNom() == self.coma.getNom() or id.getNom() == self.comb.getNom())
     
     def toString(self):
         return self.coma.getNom() + "-" + self.comb.getNom()
