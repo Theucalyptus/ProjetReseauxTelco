@@ -64,8 +64,11 @@ class Commutateur:
     def __dynamique(self, destination, route):
         dn = destination.getID()
         ca = [(l, c) for l, c in self.voisins.values() if dn in c.getLocalIDs()]
-        all = self.voisins.values()
+        cts = [(l, c) for l, c in self.voisins.values() if "cts" in c.getNom()]
+        
+        # Si le CA de la destination est dans nos voisins, alors on cherche à le joindre par un lien direct en priorité
         for l, c in ca:
+            # Si il reste de la place sur le lien
             if l.getCharge() < l.getCapacite():
                 return c.getNom()
         for l, c in all:
@@ -74,6 +77,7 @@ class Commutateur:
                     return c.getNom()
         return None
 
+    
     def getRoute(self, destination, route):
         # si le commutateur n'est pas raccordé au client final
         if not (destination.getID() in self.getLocalIDs()):
