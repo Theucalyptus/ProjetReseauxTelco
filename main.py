@@ -8,14 +8,17 @@ if __name__=="__main__":
     sim1 = Simulation(StrategieRoutage.Hierarchique)
     sim1.run()
     (rej1, actif1) = sim1.getResultats()
+    print(sum(rej1)/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
 
     sim2 = Simulation(StrategieRoutage.PartageCharge)
     sim2.run()
     (rej2, actif2) = sim2.getResultats()
+    print(sum(rej2)/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
 
     sim3 = Simulation(StrategieRoutage.Dynmaique)
     sim3.run()
     (rej3, actif3) = sim3.getResultats()
+    print(sum(rej3)/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
 
     temps = [i for i in range(0, DUREE)]
 
@@ -29,7 +32,7 @@ if __name__=="__main__":
     ax.legend(['Hierarchique Rejets', 'Hierarchique Actifs', 'Partage Charge Rejets', 'Partage Charge Actifs', 'Dynamique Rejets', 'Dynamique Actifs'])
 
     ax.set(xlabel='Temps (m)', ylabel='Nombre d\' appels',
-        title='Mon super titre')
+        title='results')
     ax.grid()
 
     #fig.savefig("out_" + str(NBAPPEL) + "_" + STRATEGIE.name + "_" + str(DUREE) + ".png")

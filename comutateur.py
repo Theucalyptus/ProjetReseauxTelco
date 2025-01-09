@@ -69,8 +69,9 @@ class Commutateur:
             if l.getCharge() < l.getCapacite():
                 return c.getNom()
         for l, c in all:
-            if not route.checkCycle(c) and l.getCharge() < l.getCapacite():
-                return c.getNom()
+            if not(c.getNom() in ["ca1","ca2","ca3"]):
+                if not route.checkCycle(c) and l.getCharge() < l.getCapacite():
+                    return c.getNom()
         return None
 
     def getRoute(self, destination, route):
