@@ -71,10 +71,9 @@ class Commutateur:
             # Si il reste de la place sur le lien
             if l.getCharge() < l.getCapacite():
                 return c.getNom()
-        for l, c in all:
-            if not(c.getNom() in ["ca1","ca2","ca3"]):
-                if not route.checkCycle(c) and l.getCharge() < l.getCapacite():
-                    return c.getNom()
+        for l, c in cts:
+            if not route.checkCycle(c) and l.getCharge() < l.getCapacite():
+                return c.getNom()
         return None
 
     
