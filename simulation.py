@@ -53,24 +53,17 @@ class Simulation:
             nbRej += u2.update([u1, u3], n[1])
             nbRej += u3.update([u1, u2], n[2])
 
-            self.rejChrono.append(nbRej)
+
+            # permet d'avoir les appels totaux rejeté au temps t
+            if len(self.rejChrono) == 0:
+                val_rej_prec = 0
+            else: 
+                val_rej_prec = self.rejChrono[-1]
+            self.rejChrono.append(nbRej + val_rej_prec)
             nbActif += len(u1.appelsIDs)           
             nbActif += len(u2.appelsIDs)
             nbActif += len(u3.appelsIDs)
             self.actifChrono.append(nbActif)
-
-        # Manière pas belle de calculer le nombre total d'appels qui ont réussi
-        #     for a1 in u1.appelsIDs:
-        #         if not(a1 in appelsPasses):
-        #             appelsPasses.append(a1)
-        #     for a2 in u2.appelsIDs:
-        #         if not(a2 in appelsPasses):
-        #             appelsPasses.append(a2)
-        #     for a3 in u3.appelsIDs:
-        #         if not(a3 in appelsPasses):
-        #             appelsPasses.append(a3)
-
-        # print(len(appelsPasses))
 
 
         # links = [l1, l2, l3, l4, l5, l6, l7, l8, l9]

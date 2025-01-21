@@ -22,19 +22,29 @@ if __name__=="__main__":
 
     temps = [i for i in range(0, DUREE)]
 
-    fig, ax = plt.subplots()
-    ax.plot(temps, rej1)
-    ax.plot(temps, actif1)
-    ax.plot(temps, rej2)
-    ax.plot(temps, actif2)
-    ax.plot(temps, rej3)
-    ax.plot(temps, actif3)
-    ax.legend(['Hierarchique Rejets', 'Hierarchique Actifs', 'Partage Charge Rejets', 'Partage Charge Actifs', 'Dynamique Rejets', 'Dynamique Actifs'])
 
-    ax.set(xlabel='Temps (m)', ylabel='Nombre d\' appels',
-        title='results')
+    # Affichage du nombre d'appels en cours au temps t
+    fig, ax = plt.subplots()
+    ax.plot(temps, actif1)
+    ax.plot(temps, actif2)
+    ax.plot(temps, actif3)
+    ax.legend(['Hierarchique Actifs', 'Partage Charge Actifs', 'Dynamique Actifs'])
+
+    ax.set(xlabel='Temps (s)', ylabel='Nombre d\' appels', title='Nombre d\'appels en cours au temps t')
     ax.grid()
 
-    #fig.savefig("out_" + str(NBAPPEL) + "_" + STRATEGIE.name + "_" + str(DUREE) + ".png")
+    # fig.savefig("acc_" + str(NBAPPEL_PAR_SECONDES) + "_" + str(DUREE) + ".png")
+    plt.show()
+
+
+    # Affichage du nombre d'appels total rejetés au cours du temps
+    fig, ax = plt.subplots()
+    ax.plot(temps, rej1)
+    ax.plot(temps, rej2)
+    ax.plot(temps, rej3)
+
+    ax.legend(['Hierarchique Rejets', 'Partage Charge Rejets', 'Dynamique Rejets'])
+    ax.set(xlabel='Temps (s)', ylabel='Nombre d\' appels', title='Nombre d\'appels rejetés au cours du temps')
+    # fig.savefig("rej_" + str(NBAPPEL_PAR_SECONDES) + "_" + str(DUREE) + ".png")
     plt.show()
 
