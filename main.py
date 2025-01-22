@@ -15,7 +15,7 @@ if __name__=="__main__":
     (rej2, actif2) = sim2.getResultats()
     print(rej2[-1]/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
 
-    sim3 = Simulation(StrategieRoutage.Dynmaique)
+    sim3 = Simulation(StrategieRoutage.Dynamique)
     sim3.run()
     (rej3, actif3) = sim3.getResultats()
     print(rej3[-1]/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés

@@ -14,7 +14,7 @@ class Simulation:
         self.resultats = None
 
     def run(self):
-        print("##### DEBUT SIMULATION #####")
+        print("##### DEBUT SIMULATION", self.strategie.name, "#####")
         ca1 = Commutateur(self.strategie, "ca1")
         ca2 = Commutateur(self.strategie, "ca2")
         ca3 = Commutateur(self.strategie, "ca3")
@@ -60,7 +60,7 @@ class Simulation:
             else: 
                 val_rej_prec = self.rejChrono[-1]
 
-                
+
             self.rejChrono.append(nbRej + val_rej_prec)
             nbActif += len(u1.appelsIDs)           
             nbActif += len(u2.appelsIDs)

@@ -10,7 +10,7 @@ class TypeCommutateur(Enum):
 class StrategieRoutage(Enum):
     Hierarchique = 1
     PartageCharge = 2
-    Dynmaique = 3
+    Dynamique = 3
     
 class Commutateur:
 
@@ -86,7 +86,7 @@ class Commutateur:
                 nextHop = self.__hierarchique(destination)
             elif self.strategie == StrategieRoutage.PartageCharge:
                 nextHop = self.__partagecharge(destination, route)
-            elif self.strategie == StrategieRoutage.Dynmaique:
+            elif self.strategie == StrategieRoutage.Dynamique:
                 nextHop = self.__dynamique(destination, route)
                 if nextHop == None:
                     route.liberer()
