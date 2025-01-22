@@ -15,16 +15,19 @@ class Simulation:
 
     def run(self):
         print("##### DEBUT SIMULATION", self.strategie.name, "#####")
+        # Création des commutateurs
         ca1 = Commutateur(self.strategie, "ca1")
         ca2 = Commutateur(self.strategie, "ca2")
         ca3 = Commutateur(self.strategie, "ca3")
         cts1 =  Commutateur(self.strategie, "cts1")
         cts2 =  Commutateur(self.strategie, "cts2")
 
+        # Création des clients
         u1 = Client("u1", ca1)
         u2 = Client("u2", ca2)
         u3 = Client("u3", ca3)
-        
+
+        # Création des liens
         l1 = Lien(CA_CA, ca1, ca2)
         l2 = Lien(CA_CA, ca2, ca3)
         l3 = Lien(CA_CTS, ca1, cts1)
@@ -40,15 +43,16 @@ class Simulation:
         nbAppelParTick = NBAPPEL_PAR_SECONDES
         
         distrib = [nbAppelParTick for i in range(DUREE)] # peut être remplacer par une loi de Poisson
-        appelsPasses = []
 
         for time in range(0, DUREE):
             nbRej = 0
             nbActif = 0
             n = [0, 0, 0]
+            # On donne les appels au différents centres
             for i in range(distrib[time]):
                 n[randint(0, 2)]+=1
 
+            # On met a jour les appels (création, fin et avancement dans le temps)
             nbRej += u1.update([u2, u3], n[0])
             nbRej += u2.update([u1, u3], n[1])
             nbRej += u3.update([u1, u2], n[2])
@@ -60,8 +64,9 @@ class Simulation:
             else: 
                 val_rej_prec = self.rejChrono[-1]
 
-
             self.rejChrono.append(nbRej + val_rej_prec)
+
+            # On calcule le nombre d'appels actifs
             nbActif += len(u1.appelsIDs)           
             nbActif += len(u2.appelsIDs)
             nbActif += len(u3.appelsIDs)
