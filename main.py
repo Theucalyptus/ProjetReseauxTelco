@@ -8,17 +8,17 @@ if __name__=="__main__":
     sim1 = Simulation(StrategieRoutage.Hierarchique)
     sim1.run()
     (rej1, actif1) = sim1.getResultats()
-    print(sum(rej1)/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
+    print(rej1[-1]/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
 
     sim2 = Simulation(StrategieRoutage.PartageCharge)
     sim2.run()
     (rej2, actif2) = sim2.getResultats()
-    print(sum(rej2)/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
+    print(rej2[-1]/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
 
     sim3 = Simulation(StrategieRoutage.Dynmaique)
     sim3.run()
     (rej3, actif3) = sim3.getResultats()
-    print(sum(rej3)/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
+    print(rej3[-1]/(NBAPPEL_PAR_SECONDES*DUREE)) # ratio d'appels ratés
 
     temps = [i for i in range(0, DUREE)]
 
@@ -34,7 +34,7 @@ if __name__=="__main__":
     ax.grid()
 
     # fig.savefig("acc_" + str(NBAPPEL_PAR_SECONDES) + "_" + str(DUREE) + ".png")
-    plt.show()
+
 
 
     # Affichage du nombre d'appels total rejetés au cours du temps

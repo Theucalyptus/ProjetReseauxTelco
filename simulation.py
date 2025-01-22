@@ -59,6 +59,8 @@ class Simulation:
                 val_rej_prec = 0
             else: 
                 val_rej_prec = self.rejChrono[-1]
+
+                
             self.rejChrono.append(nbRej + val_rej_prec)
             nbActif += len(u1.appelsIDs)           
             nbActif += len(u2.appelsIDs)
@@ -66,9 +68,6 @@ class Simulation:
             self.actifChrono.append(nbActif)
 
 
-        # links = [l1, l2, l3, l4, l5, l6, l7, l8, l9]
-        # for l in links:
-        #     print("Lien " + l.toString() + "{:10.4f}".format(l.getCharge() / l.getCapacite()))
 
 
     def getResultats(self):
